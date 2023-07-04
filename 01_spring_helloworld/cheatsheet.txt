@@ -1,0 +1,40 @@
+
+Authentication for docker in artifact registry (should also work with podman instead of docker):
+
+gcloud auth print-access-token --impersonate-service-account  docker-repo-user@dsemikin-run-java-example-001.iam.gserviceaccount.com \
+  | docker login -u oauth2accesstoken --password-stdin us-central1-docker.pkg.dev
+
+
+gcloud auth print-access-token --impersonate-service-account  docker-repo-user@dsemikin-run-java-example-001.iam.gserviceaccount.com   | podman login -u oauth2accesstoken --password-stdin us-central1-docker.pkg.dev
+
+Tag image with remote repo:
+docker tag my-image us-east1-docker.pkg.dev/my-project/my-repo/test-image
+docker tag my-image us-east1-docker.pkg.dev/my-project/my-repo/test-image:staging
+
+Push image:
+podman push 1546573dd25d docker://docker.io/myuser/myimage:1.0.0
+docker push LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY/IMAGE
+docker push LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY/IMAGE:TAG
+
+podman push localhost/ds-spring-hello:01 us-central1-docker.pkg.dev/dsemikin-run-java-example-001/ds-example-docker-repo-001/ds-spring-hello:01
+
+
+Call the service with auth:
+
+curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" https://ds-spring-hello-orwnple22q-uc.a.run.app
+
+
+
+Make service public:
+
+gcloud run services add-iam-policy-binding ds-spring-hello --member="allUsers" --role="roles/run.invoker"
+
+
+Check bindings:
+gcloud run services get-iam-policy ds-spring-hello --region=us-central1
+
+
+Revoke public access:
+
+gcloud run services remove-iam-policy-binding ds-spring-hello --member="allUsers" --role="roles/run.invoker"
+
