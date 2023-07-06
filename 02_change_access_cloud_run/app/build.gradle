@@ -7,13 +7,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.google.guava:guava:31.1-jre'
+    implementation(enforcedPlatform("com.google.cloud:libraries-bom:26.18.0"))
+    implementation 'com.google.cloud:google-cloud-run' // :0.20.0
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
 java {
     sourceCompatibility = 17
     targetCompatibility = 17
+
+    // Apply a specific Java toolchain to ease working on different environments.
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }

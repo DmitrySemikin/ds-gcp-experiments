@@ -38,3 +38,11 @@ Revoke public access:
 
 gcloud run services remove-iam-policy-binding ds-spring-hello --member="allUsers" --role="roles/run.invoker"
 
+
+
+For Java App to use your credentials locally (when using Java Lib):
+gcloud auth application-default login
+
+To revoke:
+gcloud auth application-default revoke
+
