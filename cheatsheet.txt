@@ -46,3 +46,8 @@ gcloud auth application-default login
 To revoke:
 gcloud auth application-default revoke
 
+
+# ssh port forwarding
+
+ssh -i "~/.ssh/id_ed25519" -L 8080:localhost:8080 -N opensuse-vm
+
