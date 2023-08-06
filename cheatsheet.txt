@@ -17,6 +17,7 @@ docker push LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY/IMAGE
 docker push LOCATION-docker.pkg.dev/PROJECT-ID/REPOSITORY/IMAGE:TAG
 
 podman push localhost/ds-spring-hello:01 us-central1-docker.pkg.dev/dsemikin-run-java-example-001/ds-example-docker-repo-001/ds-spring-hello:01
+podman push localhost/hello-docker-nginx us-central1-docker.pkg.dev/dsemikin-run-java-example-001/ds-example-docker-repo-001/hello-docker-nginx
 
 
 Call the service with auth:
